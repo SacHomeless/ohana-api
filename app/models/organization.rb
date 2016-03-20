@@ -27,7 +27,7 @@ class Organization < ActiveRecord::Base
 
   validates :accreditations, :funding_sources, :licenses, pg_array: true
 
-  auto_strip_attributes :alternate_name, :description, :email, :legal_status,
+  auto_strip_attributes :alternate_name, :email, :legal_status,
                         :name, :tax_id, :tax_status, :website
 
   def self.with_locations(ids)
