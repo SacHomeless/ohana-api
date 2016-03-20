@@ -82,8 +82,8 @@ CREATE TABLE addresses (
     postal_code text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    country character varying(255) NOT NULL,
-    address_2 character varying(255)
+    country character varying NOT NULL,
+    address_2 character varying
 );
 
 
@@ -112,21 +112,21 @@ ALTER SEQUENCE addresses_id_seq OWNED BY addresses.id;
 
 CREATE TABLE admins (
     id integer NOT NULL,
-    email character varying(255) DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
-    name character varying(255) DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying(255),
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    name character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
     remember_created_at timestamp without time zone,
     sign_in_count integer DEFAULT 0 NOT NULL,
     current_sign_in_at timestamp without time zone,
     last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying(255),
-    last_sign_in_ip character varying(255),
-    confirmation_token character varying(255),
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    confirmation_token character varying,
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
-    unconfirmed_email character varying(255),
+    unconfirmed_email character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     super_admin boolean DEFAULT false
@@ -198,7 +198,7 @@ CREATE TABLE categories (
     slug text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    ancestry character varying(255)
+    ancestry character varying
 );
 
 
@@ -243,7 +243,7 @@ CREATE TABLE contacts (
     email text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    department character varying(255),
+    department character varying,
     organization_id integer,
     service_id integer
 );
@@ -274,7 +274,7 @@ ALTER SEQUENCE contacts_id_seq OWNED BY contacts.id;
 
 CREATE TABLE friendly_id_slugs (
     id integer NOT NULL,
-    slug character varying(255) NOT NULL,
+    slug character varying NOT NULL,
     sluggable_id integer NOT NULL,
     sluggable_type character varying(40),
     created_at timestamp without time zone
@@ -355,11 +355,11 @@ CREATE TABLE locations (
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     tsv_body tsvector,
-    alternate_name character varying(255),
+    alternate_name character varying,
     virtual boolean DEFAULT false,
     active boolean DEFAULT true,
-    website character varying(255),
-    email character varying(255)
+    website character varying,
+    email character varying
 );
 
 
@@ -396,8 +396,8 @@ CREATE TABLE mail_addresses (
     postal_code text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    country character varying(255) NOT NULL,
-    address_2 character varying(255)
+    country character varying NOT NULL,
+    address_2 character varying
 );
 
 
@@ -430,17 +430,17 @@ CREATE TABLE organizations (
     slug text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    alternate_name character varying(255),
+    alternate_name character varying,
     date_incorporated date,
     description text NOT NULL,
-    email character varying(255),
-    legal_status character varying(255),
-    tax_id character varying(255),
-    tax_status character varying(255),
-    website character varying(255),
-    funding_sources character varying(255)[] DEFAULT '{}'::character varying[],
-    accreditations character varying(255)[] DEFAULT '{}'::character varying[],
-    licenses character varying(255)[] DEFAULT '{}'::character varying[]
+    email character varying,
+    legal_status character varying,
+    tax_id character varying,
+    tax_status character varying,
+    website character varying,
+    funding_sources character varying[] DEFAULT '{}'::character varying[],
+    accreditations character varying[] DEFAULT '{}'::character varying[],
+    licenses character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -476,8 +476,8 @@ CREATE TABLE phones (
     vanity_number text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    number_type character varying(255),
-    country_prefix character varying(255),
+    number_type character varying,
+    country_prefix character varying,
     contact_id integer,
     organization_id integer,
     service_id integer
@@ -510,8 +510,8 @@ ALTER SEQUENCE phones_id_seq OWNED BY phones.id;
 CREATE TABLE programs (
     id integer NOT NULL,
     organization_id integer,
-    name character varying(255),
-    alternate_name character varying(255),
+    name character varying,
+    alternate_name character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -574,7 +574,7 @@ ALTER SEQUENCE regular_schedules_id_seq OWNED BY regular_schedules.id;
 --
 
 CREATE TABLE schema_migrations (
-    version character varying(255) NOT NULL
+    version character varying NOT NULL
 );
 
 
@@ -597,13 +597,13 @@ CREATE TABLE services (
     keywords text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    accepted_payments character varying(255)[] DEFAULT '{}'::character varying[],
-    alternate_name character varying(255),
-    email character varying(255),
-    languages character varying(255)[] DEFAULT '{}'::character varying[],
-    required_documents character varying(255)[] DEFAULT '{}'::character varying[],
-    status character varying(255) DEFAULT 'active'::character varying NOT NULL,
-    website character varying(255),
+    accepted_payments character varying[] DEFAULT '{}'::character varying[],
+    alternate_name character varying,
+    email character varying,
+    languages character varying[] DEFAULT '{}'::character varying[],
+    required_documents character varying[] DEFAULT '{}'::character varying[],
+    status character varying DEFAULT 'active'::character varying NOT NULL,
+    website character varying,
     program_id integer,
     interpretation_services text
 );
@@ -634,21 +634,21 @@ ALTER SEQUENCE services_id_seq OWNED BY services.id;
 
 CREATE TABLE users (
     id integer NOT NULL,
-    email character varying(255) DEFAULT ''::character varying NOT NULL,
-    encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
-    name character varying(255) DEFAULT ''::character varying NOT NULL,
-    reset_password_token character varying(255),
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    name character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
     remember_created_at timestamp without time zone,
     sign_in_count integer DEFAULT 0 NOT NULL,
     current_sign_in_at timestamp without time zone,
     last_sign_in_at timestamp without time zone,
-    current_sign_in_ip character varying(255),
-    last_sign_in_ip character varying(255),
-    confirmation_token character varying(255),
+    current_sign_in_ip character varying,
+    last_sign_in_ip character varying,
+    confirmation_token character varying,
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
-    unconfirmed_email character varying(255),
+    unconfirmed_email character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
