@@ -10,8 +10,12 @@
   %p
     As a super admin, you have access to all locations in the database. Please make updates responsibly.
 
+= form_tag admin_organizations_path, method: 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag "Search", :name => nil
+
 %p
   - @orgs.each do |org|
     %ul
-      = link_to org.second, edit_admin_organization_path(org.third)
+      = link_to org.name, edit_admin_organization_path(org.slug)
   = paginate @orgs

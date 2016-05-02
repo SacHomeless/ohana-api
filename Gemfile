@@ -81,6 +81,8 @@ group :test do
   gem 'rubocop'
   gem 'haml_lint'
   gem 'webmock'
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :development do
@@ -91,6 +93,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen'
   gem 'letter_opener'
+  gem 'pry-byebug'
 
   # For profiling the app's performance and memory usage.
   gem 'derailed'

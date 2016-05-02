@@ -8,10 +8,15 @@
 - if current_admin.super_admin?
   %p As a super admin, you have access to all locations in the database. Please make updates responsibly.
 
+= form_tag admin_locations_path, method: 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag "Search", :name => nil
+
 %p
+  = paginate @locations
   - @locations.each do |location|
     %ul
-      = link_to location.second, edit_admin_location_path(location.third)
+      = link_to location.name, edit_admin_location_path(location.slug)
   = paginate @locations
 
 - if @locations.present?
