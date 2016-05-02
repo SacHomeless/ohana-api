@@ -7,7 +7,7 @@ class LocationPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       return scope.order(:name) if user.super_admin?
-      scope.with_email(user.email) # .pluck(:id, :name, :slug)
+      scope.with_email(user.email)
     end
   end
 end
