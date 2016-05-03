@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def edit?
-    scope.flatten.include?(record.id)
+    scope.where(:id => record.id).count == 1
   end
 
   def scope
@@ -27,7 +27,7 @@ class ApplicationPolicy
     end
 
     def location_ids
-      Pundit.policy_scope!(user, Location).map(&:first).flatten
+      Pundit.policy_scope!(user, Location).map(&:id).flatten
     end
   end
 end

@@ -4,14 +4,18 @@ class Admin
     layout 'admin'
 
     def index
-      @locations = Kaminari.paginate_array(policy_scope(Location)).
+      if (params[:search])
+        @locations = Kaminari.paginate_array(policy_scope(Location)
+          .where("name ilike ?", '%' + params[:search].to_s + '%')).  page(params[:page]).per(params[:per_page])
+      else
+        @locations = Kaminari.paginate_array(policy_scope(Location)).
                    page(params[:page]).per(params[:per_page])
+      end
     end
 
     def edit
       @location = Location.find(params[:id])
       @org = @location.organization
-
       authorize @location
     end
 

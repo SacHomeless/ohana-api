@@ -5,12 +5,12 @@ class ProgramPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      return scope.pluck(:id, :name).sort_by(&:second) if user.super_admin?
-      scope.with_orgs(org_ids).pluck(:id, :name)
+      return scope.order(:name) if user.super_admin?
+      scope.with_orgs(org_ids)
     end
 
     def org_ids
-      Pundit.policy_scope!(user, Organization).map(&:first).flatten
+      Pundit.policy_scope!(user, Organization).map(&:id).flatten
     end
   end
 end

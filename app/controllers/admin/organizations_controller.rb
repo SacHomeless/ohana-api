@@ -6,7 +6,13 @@ class Admin
     include Taggable
 
     def index
-      @all_orgs = policy_scope(Organization)
+      if (params[:search])
+        @all_orgs = policy_scope(Organization)
+          .where("name ilike ?", '%' + params[:search].to_s + '%')
+      else
+        @all_orgs = policy_scope(Organization)
+      end
+
       @orgs = Kaminari.paginate_array(@all_orgs).page(params[:page])
 
       respond_to do |format|
