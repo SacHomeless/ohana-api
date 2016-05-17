@@ -13,7 +13,7 @@
 %p
   - @programs.each do |program|
     %ul
-      = link_to program.second, edit_admin_program_path(program.first)
+      = link_to program.name, edit_admin_program_path(program.id)
   = paginate @programs
 
   - if Pundit.policy_scope!(current_admin, Organization).present?

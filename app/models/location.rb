@@ -78,7 +78,7 @@ class Location < ActiveRecord::Base
   # Admin emails can be added to a location via the Admin interface.
   serialize :admin_emails, Array
 
-  auto_strip_attributes :email, :name, :short_desc,
+  auto_strip_attributes :description, :email, :name, :short_desc,
                         :transportation, :website
 
   auto_strip_attributes :admin_emails, reject_blank: true, nullify: false
