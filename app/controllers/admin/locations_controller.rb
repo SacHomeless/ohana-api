@@ -59,7 +59,7 @@ class Admin
     def assign_location_to_org(admin_orgs)
       org_id = params[:location][:organization_id]
 
-      if admin_orgs.select { |org| org[0] == org_id.to_i }.present?
+      if admin_orgs.select { |org| org.id == org_id.to_i }.present?
         @location.organization = Organization.find(org_id)
       end
     end

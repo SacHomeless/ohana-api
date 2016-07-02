@@ -54,7 +54,7 @@ class Admin
     def add_org_to_program_if_authorized
       org_id = params[:program][:organization_id]
 
-      if policy_scope(Organization).select { |org| org[0] == org_id.to_i }.present?
+      if policy_scope(Organization).select { |org| org.id == org_id.to_i }.present?
         @program.organization_id = org_id
       end
     end
