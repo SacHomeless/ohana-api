@@ -1,9 +1,6 @@
-.inst-box
-  %header
-    = f.label :email, 'Email'
-    %span.desc
-      The #{f.object.class.to_s.downcase}'s general email.
-  = field_set_tag do
-    .row
-      .col-sm-6
-        = f.email_field :email, required: false, maxlength: 255, class: 'form-control'
+.form-group
+  %div.col-sm-4.control-label
+    = f.label :email, 'General Email Address'
+  .col-sm-8
+    = f.email_field :email, required: false, maxlength: 255, class: 'form-control'
+

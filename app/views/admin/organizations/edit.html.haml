@@ -1,4 +1,4 @@
 .content-box
-  %h2= @organization.name
-= form_for [:admin, @organization], html: { class: 'edit_entry' } do |f|
+  %h4= @organization.name
+= form_for [:admin, @organization], html: { class: 'edit_entry form-horizontal' } do |f|
   = render 'admin/organizations/form', f: f

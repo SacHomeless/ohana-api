@@ -1,8 +1,6 @@
-.inst-box.funding_sources
-  %header
-    %strong
-      Funding Sources
-    %p.desc
-      How is this #{f.object.class.to_s.downcase} funded?
-  = field_set_tag do
+.form-group
+  %div.col-sm-4.control-label
+    = f.label :funding_sources, 'Funding Sources'
+  .col-sm-8
     = f.select :funding_sources, SETTINGS.try(:[], :funding_sources), {}, multiple: true, class: 'form-control'
+

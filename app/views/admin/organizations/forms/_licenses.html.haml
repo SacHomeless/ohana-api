@@ -1,9 +1,7 @@
-.inst-box
-  %header
-    %strong
-      Licenses
-    %p.desc
-      You can enter multiple terms in this box by pressing the comma key after each one.
-
-  = field_set_tag do
+.form-group
+  %div.col-sm-4.control-label
+    = f.label :organization_licenses, "Licenses"
+    .desc
+      (Comma-separated list)
+  .col-sm-8
     = text_field_tag 'organization[licenses][]', @organization.licenses.join(','), id: 'organization_licenses', class: 'form-control'
