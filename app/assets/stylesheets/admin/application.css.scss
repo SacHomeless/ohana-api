@@ -43,6 +43,27 @@
   p { padding-top: 10px; }
 }
 
+.label
+{
+  background:#cbe0f3;
+  text-align: left;
+  padding-bottom: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  color: black;
+  font-size:14px;
+  font-weight: bold; font-size:16px;
+  border:1px solid #C8D4E8;
+  margin-bottom: 0;
+  height: 2em;
+}
+
+.row
+{
+  margin-left: 0;
+}
+
 .inst-box
 {
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
@@ -50,12 +71,12 @@
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
 
   border:1px solid #C8D4E8;
-  margin-bottom:20px;
+  margin-bottom: 0;
   header
   {
   background:#cbe0f3;
-  margin-bottom:10px;
-  padding:10px;
+  margin-bottom: 0;
+  padding: 0;
 
     .desc
     {
@@ -67,25 +88,27 @@
         color:#b5121b;
       }
     }
-    label {font-weight: bold; font-size:16px;}
+    label {
+      margin-bottom: 0;
+    }
   }
   input, textarea
   {
-    margin:0px 0px 20px 0px;
+    margin:0px 0px 0px 0px;
   }
 
   p
   {
-    padding:0px 10px 0px 10px;
+    padding:0px 0px 0px 0px;
   }
   fieldset
   {
-    padding: 10px;
+    padding: 1px;
   }
 
   hr
   {
-    margin-left:-10px;
+    margin-left:0px;
   }
 }
 
