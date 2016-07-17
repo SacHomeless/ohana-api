@@ -1,7 +1,7 @@
-.inst-box
-  %header
+.form-group
+  .col-sm-4.control-label
     = f.label :audience, 'Audience'
-    %p.desc
+    .desc
       What groups are served, if not everyone?
-  %p
+  .col-sm-8
     = f.text_area :audience, class: 'form-control'

@@ -1,7 +1,7 @@
-.inst-box
-  %header
+.form-group
+  .col-sm-4.control-label
     = f.label :fees, 'Fees'
-    %p.desc
+    .desc
       Are there any fees to receive this service?
-  %p
+  .col-sm-8
     = f.text_area :fees, class: 'form-control'

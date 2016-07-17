@@ -1,7 +1,7 @@
-.inst-box
-  %header
+.form-group
+  .col-md-4.control-label
     = f.label :wait_time, 'Wait Time'
-    %p.desc
+    .desc
       How long on average does a client need to wait to receive services?
-  %p
+  .col-md-8
     = f.text_area :wait_time, class: 'form-control'

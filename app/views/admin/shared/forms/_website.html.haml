@@ -1,5 +1,5 @@
 .form-group
-  %div.col-sm-4.control-label
+  .col-sm-4.control-label
     = f.label :website, "#{f.object.class} Website"
   .col-sm-8
     = f.url_field :website, required: false, maxlength: 255, class: 'form-control'

@@ -1,7 +1,7 @@
-.inst-box.program
-  %header
+.form-group
+  .col-sm-4.control-label
     = f.label :program_id, 'Service Program'
-    %span.desc
+    .desc
       If this service is associated with a program, enter it below.
-  %p
+  .col-sm-8
     = program_autocomplete_field_for(f)

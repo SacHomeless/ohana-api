@@ -1,7 +1,7 @@
-.inst-box
-  %header
+.form-group
+  .col-sm-4.control-label
     = f.label :application_process, 'Application process'
-    %p.desc
+    .desc
       How does a client apply to receive services, if applicable?
-  %p
+  .col-sm-8
     = f.text_area :application_process, class: 'form-control'

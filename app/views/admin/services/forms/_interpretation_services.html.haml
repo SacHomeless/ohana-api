@@ -1,7 +1,7 @@
-.inst-box
-  %header
+.form-group
+  .col-sm-4.control-label
     = f.label :interpretation_services, 'Interpretation Services'
-    %p.desc
+    .desc
       What kind of interpretation services are available?
-  %p
+  .col-sm-8
     = f.text_area :interpretation_services, class: 'form-control'

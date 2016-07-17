@@ -1,6 +1,6 @@
-.inst-box.documents
-  %header
-    %strong
-      The documents required to receive this service.
-  = field_set_tag do
-    = f.select :required_documents, SETTINGS.try(:[], :required_documents), {}, multiple: true, class: 'form-control'
+.form-group
+  .col-md-4.control-label
+    = f.label "The documents required to receive this service."
+  .col-md-8
+    = field_set_tag do
+      = f.select :required_documents, SETTINGS.try(:[], :required_documents), {}, multiple: true, class: 'form-control'
