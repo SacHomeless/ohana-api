@@ -1,7 +1,8 @@
-.inst-box
-  %header
+.form-group
+  .col-sm-4.control-label
     = f.label :description, 'Description'
-    %span.desc
+    .desc
       A description of the location's services.
-  = field_set_tag do
-    = f.text_area :description, required: false, class: 'form-control', rows: 10
+  .col-sm-8
+    = field_set_tag do
+      = f.text_area :description, required: false, class: 'form-control', rows: 10

@@ -1,7 +1,6 @@
-.inst-box
-  %header
+.form-group
+  .col-sm-4.control-label
     = f.label :email, 'Contact Email'
-  = field_set_tag do
-    .row
-      .col-sm-6
-        = f.email_field :email, required: false, maxlength: 255, class: 'form-control'
+  .col-sm-8
+    = field_set_tag do
+      = f.email_field :email, required: false, maxlength: 255, class: 'form-control'
