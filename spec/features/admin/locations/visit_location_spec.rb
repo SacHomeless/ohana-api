@@ -5,77 +5,87 @@ feature 'Visiting a specific location' do
     @location = create(:location)
   end
 
-  before(:each) do
-    @location.reload
+  describe "with Rack::Test" do
+    before(:each) do
+      @location.reload
+    end
+
+    scenario "when location doesn't include generic email" do
+      admin = create(:admin_with_generic_email)
+      login_as_admin(admin)
+      visit('/admin/locations/vrs-services')
+      expect(page).to have_content I18n.t('admin.not_authorized')
+      expect(current_path).to eq(admin_dashboard_path)
+    end
+
+    scenario "when location doesn't include domain name" do
+      login_admin
+      visit('/admin/locations/vrs-services')
+      expect(page).to have_content I18n.t('admin.not_authorized')
+      expect(current_path).to eq(admin_dashboard_path)
+    end
+
+    scenario 'when location includes domain name' do
+      @location.update!(website: 'http://samaritanhouse.com')
+      login_admin
+      visit('/admin/locations/vrs-services')
+      expect(page).to_not have_content I18n.t('admin.not_authorized')
+      @location.update!(website: '')
+    end
+
+    scenario 'when admin is location admin' do
+      new_admin = create(:admin_with_generic_email)
+      @location.update!(admin_emails: [new_admin.email])
+      login_as_admin(new_admin)
+      visit('/admin/locations/vrs-services')
+      expect(page).to_not have_content I18n.t('admin.not_authorized')
+      @location.update!(admin_emails: [])
+    end
+
+    scenario 'when admin is location admin but has non-generic email' do
+      login_admin
+      @location.update!(admin_emails: [@admin.email])
+      visit('/admin/locations/vrs-services')
+      expect(page).to_not have_content I18n.t('admin.not_authorized')
+      @location.update!(admin_emails: [])
+    end
+
+    scenario 'when admin is super admin' do
+      login_super_admin
+      visit('/admin/locations/vrs-services')
+      expect(page).to_not have_content I18n.t('admin.not_authorized')
+    end
+
+    context "when admin doesn't belong to any locations" do
+      it 'denies access to create a new location' do
+        login_admin
+        visit('/admin/locations/new')
+        expect(page).to have_content I18n.t('admin.not_authorized')
+        expect(current_path).to eq(admin_dashboard_path)
+        visit('/admin/locations')
+        expect(page).to_not have_link I18n.t('admin.buttons.add_location')
+      end
+    end
+  end
+
+  describe "with Poltergeist" do
+    before(:each) do
+      Capybara.current_driver = :poltergeist
+      page.driver.resize(1024, 4000)
+      @location.reload
+    end
+
+    context 'when admin is super_admin' do
+      it 'allows access to create a new location' do
+        Organization.find_each(&:destroy)
+        login_super_admin
+        visit('/admin/locations/new')
+        expect(page).to have_content 'Choose an organization'
+      end
+    end
   end
 
   after(:all) do
     Organization.find_each(&:destroy)
-  end
-
-  scenario "when location doesn't include generic email" do
-    admin = create(:admin_with_generic_email)
-    login_as_admin(admin)
-    visit('/admin/locations/vrs-services')
-    expect(page).to have_content I18n.t('admin.not_authorized')
-    expect(current_path).to eq(admin_dashboard_path)
-  end
-
-  scenario "when location doesn't include domain name" do
-    login_admin
-    visit('/admin/locations/vrs-services')
-    expect(page).to have_content I18n.t('admin.not_authorized')
-    expect(current_path).to eq(admin_dashboard_path)
-  end
-
-  scenario 'when location includes domain name' do
-    @location.update!(website: 'http://samaritanhouse.com')
-    login_admin
-    visit('/admin/locations/vrs-services')
-    expect(page).to_not have_content I18n.t('admin.not_authorized')
-    @location.update!(website: '')
-  end
-
-  scenario 'when admin is location admin' do
-    new_admin = create(:admin_with_generic_email)
-    @location.update!(admin_emails: [new_admin.email])
-    login_as_admin(new_admin)
-    visit('/admin/locations/vrs-services')
-    expect(page).to_not have_content I18n.t('admin.not_authorized')
-    @location.update!(admin_emails: [])
-  end
-
-  scenario 'when admin is location admin but has non-generic email' do
-    login_admin
-    @location.update!(admin_emails: [@admin.email])
-    visit('/admin/locations/vrs-services')
-    expect(page).to_not have_content I18n.t('admin.not_authorized')
-    @location.update!(admin_emails: [])
-  end
-
-  scenario 'when admin is super admin' do
-    login_super_admin
-    visit('/admin/locations/vrs-services')
-    expect(page).to_not have_content I18n.t('admin.not_authorized')
-  end
-
-  context "when admin doesn't belong to any locations" do
-    it 'denies access to create a new location' do
-      login_admin
-      visit('/admin/locations/new')
-      expect(page).to have_content I18n.t('admin.not_authorized')
-      expect(current_path).to eq(admin_dashboard_path)
-      visit('/admin/locations')
-      expect(page).to_not have_link I18n.t('admin.buttons.add_location')
-    end
-  end
-
-  context 'when admin is super_admin' do
-    it 'allows access to create a new location' do
-      Organization.find_each(&:destroy)
-      login_super_admin
-      visit('/admin/locations/new')
-      expect(page).to have_content 'Choose an organization'
-    end
   end
 end
