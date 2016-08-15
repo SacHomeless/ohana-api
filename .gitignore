@@ -52,3 +52,12 @@ script/import_to_staging
 
 # Zeus
 .zeus.sock
+
+# Backup databases
+db/backups
+
+# vim tags file
+tags
+
+# letsencrypt's .well-known file
+.well-known
