@@ -63,21 +63,11 @@ class Admin
     end
 
     def org_autocomplete_field_for(f, admin)
-      if admin.super_admin?
-        f.hidden_field(
-          :organization_id,
-          id: 'org-name',
-          class: 'form-control',
-          data: { 'ajax-url' => admin_organizations_url,
-                  'placeholder' => 'Choose an organization' }
-        )
-      else
-        f.select(
-          :organization_id,
-          policy_scope(Organization).map { |org| [org.second, org.first] },
-          {}, class: 'form-control'
-        )
-      end
+      f.select(
+        :organization_id,
+        policy_scope(Organization).map { |org| [org.second, org.first] },
+        {}, class: 'form-control'
+      )
     end
 
     def program_autocomplete_field_for(f)
