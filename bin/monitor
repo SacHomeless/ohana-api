@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+def free_mem
+  free_mem = `free -m`
+  mem = /Mem:\s*\d+\s*\d+\s*(\d+)/.match(free_mem)[1].to_i
+end
+
+def ohana_web_pid
+  ps_result = `ps aux | grep puma | grep "tcp.*ohana-api"`
+  /\S+\s*(\d+)/.match(ps_result)[1].to_i
+end
+
+def ohana_api_pid
+  ps_result = `ps aux | grep puma | grep "tcp.*ohana-api"`
+  /\S+\s*(\d+)/.match(ps_result)[1].to_i
+end
+
+def restart_web_server
+  Process.kill("SIGUSR2", ohana_api_pid)
+end
+
+def restart_api_server
+  Process.kill("SIGUSR2", ohana_api_pid)
+end
+
+def memory_too_low?
+  free_mem < 100
+end
+
+while true do
+  if memory_too_low?
+    puts "Restarting servers at #{Time.now}"
+    begin
+    restart_api_server
+    restart_web_server
+    rescue => e
+    end
+  end
+  sleep 10
+end
