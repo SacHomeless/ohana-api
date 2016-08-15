@@ -17,6 +17,12 @@ Bundler.require(*Rails.groups)
 
 module OhanaApi
   class Application < Rails::Application
+    # From http://stackoverflow.com/questions/2535454/how-to-set-access-control-allow-origin-in-webrick-under-rails
+    config.action_dispatch.default_headers.merge!({
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Request-Method' => '*'
+    })
+
     config.autoload_paths << Rails.root.join('lib')
 
     # don't generate RSpec tests for views and helpers
