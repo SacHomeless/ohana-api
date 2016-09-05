@@ -30,8 +30,9 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
+  # Don't use ssl in production. Let nginx handle ssl for us.
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = (ENV['ENABLE_HTTPS'] == 'yes')
+  # config.force_ssl = (ENV['ENABLE_HTTPS'] == 'yes')
 
   # Use the info log level to ensure that sensitive information
   # in SQL statements is not saved.

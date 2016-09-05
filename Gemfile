@@ -70,6 +70,7 @@ group :test, :development do
   gem 'factory_girl_rails', '>= 4.2.0'
   gem 'bullet'
   gem 'smarter_csv'
+  gem 'pry-byebug'
 end
 
 group :test do
@@ -82,10 +83,15 @@ group :test do
   gem 'haml_lint'
   gem 'webmock'
   gem 'pry'
-  gem 'pry-byebug'
 end
 
 group :development do
+  gem "capistrano", "3.5"
+  gem "capistrano-rails", "~> 1.1"
+  gem "capistrano-rvm"
+  gem "capistrano-bundler", "~> 1.1.2"
+  gem "capistrano3-puma", github: "seuros/capistrano-puma"
+
   gem 'quiet_assets', '>= 1.0.2'
   gem 'better_errors', '>= 0.7.2'
   gem 'binding_of_caller', '>= 0.7.1', platforms: [:mri_19, :rbx]
@@ -93,7 +99,6 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen'
   gem 'letter_opener'
-  gem 'pry-byebug'
 
   # For profiling the app's performance and memory usage.
   gem 'derailed'
