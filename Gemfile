@@ -51,9 +51,9 @@ gem 'ancestry'
 gem 'friendly_id', '~> 5.0'
 # Caching
 gem 'rack-cache'
-gem 'dalli'
+# gem 'dalli'
 gem 'kgio'
-gem 'memcachier'
+# gem 'memcachier'
 
 gem 'csv_shaper'
 gem 'rubyzip'

@@ -117,7 +117,6 @@ GEM
       safe_yaml (~> 1.0.0)
     csv_shaper (1.2.0)
       activesupport (>= 3.0.0)
-    dalli (2.7.6)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     derailed (0.1.0)
@@ -203,7 +202,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    memcachier (0.0.2)
     memory_profiler (0.9.6)
     method_source (0.8.2)
     mime-types (2.99.1)
@@ -399,7 +397,6 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   coveralls
   csv_shaper
-  dalli
   database_cleaner (>= 1.0.0.RC1)
   derailed
   devise (~> 3.4)
@@ -415,7 +412,6 @@ DEPENDENCIES
   kaminari
   kgio
   letter_opener
-  memcachier
   pg
   poltergeist
   protected_attributes

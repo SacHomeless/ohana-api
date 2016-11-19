@@ -57,25 +57,25 @@ Rails.application.configure do
 
   config.action_controller.perform_caching = true
 
-  config.cache_store = :dalli_store
-  client = Dalli::Client.new((ENV['MEMCACHIER_SERVERS'] || '').split(','),
-                             username: ENV['MEMCACHIER_USERNAME'],
-                             password: ENV['MEMCACHIER_PASSWORD'],
-                             failover: true,
-                             socket_timeout: 1.5,
-                             socket_failure_delay: 0.2,
-                             value_max_bytes: 10_485_760)
+  # config.cache_store = :dalli_store
+  # client = Dalli::Client.new((ENV['MEMCACHIER_SERVERS'] || '').split(','),
+  #                            username: ENV['MEMCACHIER_USERNAME'],
+  #                            password: ENV['MEMCACHIER_PASSWORD'],
+  #                            failover: true,
+  #                            socket_timeout: 1.5,
+  #                            socket_failure_delay: 0.2,
+  #                            value_max_bytes: 10_485_760)
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application.
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.
-  config.action_dispatch.rack_cache = {
-    metastore:   client,
-    entitystore: client,
-    verbose: false
-  }
-  config.static_cache_control = 'public, max-age=2592000'
+  # config.action_dispatch.rack_cache = {
+  #   metastore:   client,
+  #   entitystore: client,
+  #   verbose: false
+  # }
+  # config.static_cache_control = 'public, max-age=2592000'
   # --------------------------------------------------------------------------
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
