@@ -65,6 +65,7 @@ group :production do
 end
 
 group :test, :development do
+  gem 'tzinfo-data'
   gem 'rspec-rails', '~> 3.1'
   gem 'rspec-its'
   gem 'factory_girl_rails', '>= 4.2.0'
