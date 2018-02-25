@@ -5,7 +5,7 @@ feature 'Visiting a specific location' do
     @location = create(:location)
   end
 
-  describe "with Rack::Test" do
+  describe 'with Rack::Test' do
     before(:each) do
       @location.reload
     end
@@ -68,7 +68,7 @@ feature 'Visiting a specific location' do
     end
   end
 
-  describe "with Poltergeist" do
+  describe 'with Poltergeist' do
     before(:each) do
       Capybara.current_driver = :poltergeist
       page.driver.resize(1024, 4000)

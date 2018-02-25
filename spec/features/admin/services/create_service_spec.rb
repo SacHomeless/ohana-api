@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Create a new service' do
-  describe "with Rack::Test" do
+  describe 'with Rack::Test' do
     background do
       @loc = create(:location)
       login_super_admin
@@ -256,14 +256,14 @@ feature 'Create a new service' do
     end
   end
 
-  describe "with Poltergeist" do
+  describe 'with Poltergeist' do
     background do
       Capybara.current_driver = :poltergeist
       page.driver.resize(1024, 4000)
       @loc = create(:location)
       login_super_admin
       visit('/admin/locations/vrs-services')
-      page.save_screenshot "add_service_button.png"
+      page.save_screenshot 'add_service_button.png'
       click_link I18n.t('admin.buttons.add_service')
     end
 

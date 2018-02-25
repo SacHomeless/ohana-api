@@ -7,7 +7,7 @@ class ApplicationPolicy
   end
 
   def edit?
-    scope.where(:id => record.id).count == 1
+    scope.where(id: record.id).count == 1
   end
 
   def scope

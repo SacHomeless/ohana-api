@@ -3,8 +3,8 @@ lock '3.5.0'
 set :application, 'sacsos_api'
 set :repo_url, 'https://github.com/SacHomeless/ohana-api.git'
 
-if ENV["BRANCH"]
-  set :branch, ENV["BRANCH"]
+if ENV['BRANCH']
+  set :branch, ENV['BRANCH']
 else
   ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 end

@@ -6,22 +6,20 @@ class Admin
     include Taggable
 
     def index
-      if (params[:search])
-        @all_orgs = policy_scope(Organization)
-          .where("name ilike ?", '%' + params[:search].to_s + '%')
-      elsif (params[:q])
-        @all_orgs = policy_scope(Organization)
-          .where("name ilike ?", params[:q].to_s + '%')
-      else
-        @all_orgs = policy_scope(Organization)
-      end
+      @all_orgs = if params[:search]
+                    policy_scope(Organization).where('name ilike ?', '%' + params[:search].to_s + '%')
+                  elsif params[:q]
+                    policy_scope(Organization).where('name ilike ?', params[:q].to_s + '%')
+                  else
+                    policy_scope(Organization)
+                  end
 
       respond_to do |format|
         format.html do
           @orgs = Kaminari.paginate_array(@all_orgs.order(:name)).page(params[:page])
         end
         format.json do
-          render json: @all_orgs.order(:id).all.collect { |org| org.name =~ /#{params[:q]}/i ? [org.id, org.name, org.description] : nil}.compact
+          render json: @all_orgs.order(:id).all.collect { |org| org.name =~ /#{params[:q]}/i ? [org.id, org.name, org.description] : nil }.compact
         end
       end
     end

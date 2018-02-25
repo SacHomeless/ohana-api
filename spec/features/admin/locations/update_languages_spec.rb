@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Update languages' do
-  describe "with Poltergeist" do
+  describe 'with Poltergeist' do
     background do
       Capybara.current_driver = :poltergeist
       page.driver.resize(1024, 4000)
@@ -32,7 +32,7 @@ feature 'Update languages' do
     end
   end
 
-  describe "with Rack::Test" do
+  describe 'with Rack::Test' do
     background do
       @location = create(:location)
       login_super_admin
@@ -43,6 +43,5 @@ feature 'Update languages' do
       click_button I18n.t('admin.buttons.save_changes')
       expect(@location.reload.languages).to eq []
     end
-
   end
 end

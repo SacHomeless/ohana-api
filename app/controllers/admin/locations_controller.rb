@@ -4,13 +4,13 @@ class Admin
     layout 'admin'
 
     def index
-      if (params[:search])
-        @locations = Kaminari.paginate_array(policy_scope(Location)
-          .where("name ilike ?", '%' + params[:search].to_s + '%')).  page(params[:page]).per(params[:per_page])
-      else
-        @locations = Kaminari.paginate_array(policy_scope(Location)).
-                   page(params[:page]).per(params[:per_page])
-      end
+      @locations = if params[:search]
+                     Kaminari.paginate_array(policy_scope(Location).
+                     where('name ilike ?', '%' + params[:search].to_s + '%')).  page(params[:page]).per(params[:per_page])
+                   else
+                     Kaminari.paginate_array(policy_scope(Location)).
+                     page(params[:page]).per(params[:per_page])
+                   end
     end
 
     def edit
