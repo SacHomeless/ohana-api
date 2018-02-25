@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
 gem 'rails', '~> 4.2'
 
 gem 'pg'
@@ -87,11 +86,11 @@ group :test do
 end
 
 group :development do
-  gem "capistrano", "3.5"
-  gem "capistrano-rails", "~> 1.1"
-  gem "capistrano-rvm"
-  gem "capistrano-bundler", "~> 1.1.2"
-  gem "capistrano3-puma", github: "seuros/capistrano-puma"
+  gem 'capistrano', '3.5'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
 
   gem 'quiet_assets', '>= 1.0.2'
   gem 'better_errors', '>= 0.7.2'
